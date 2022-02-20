@@ -1,0 +1,42 @@
+form {
+  padding: 20px;
+  font-family: 'Raleway', sans-serif;
+}
+
+input, input:focus {
+  background-color: transparent;
+  color: var(--color-wh);
+}
+
+input::placeholder {
+  color: var(--color-wh);
+}
+
+a:hover {
+  color: var(--color-sc);
+}
+
+.form-block {
+  padding: 20px;
+  min-width: 200px;
+}
+
+.font-w-500 {
+  font-weight: 500;
+}
+
+.bw-2 {
+  border-width: 2px !important;
+}
+
+.size {
+  height: 100vh;
+}
+
+.ft-wh {
+  color: var(--color-wh)
+}
+
+.b-wh {
+  border-color: var(--color-wh) !important;
+}
