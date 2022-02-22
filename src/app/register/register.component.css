@@ -40,3 +40,12 @@ a:hover {
 .b-wh {
   border-color: var(--color-wh) !important;
 }
+
+.ft-red {
+  color: var(--color-red)
+}
+
+.b-red {
+  border-color: var(--color-red) !important;
+}
+
