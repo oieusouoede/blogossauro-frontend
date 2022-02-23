@@ -9,11 +9,13 @@
     <form class="ft-wh d-flex flex-wrap">
       <div class="form-block">
         <div class="form-group">
-          <label for="nome">Nome</label>
+          <label for="name">Nome</label>
           <input
+            [(ngModel)]="user.name"
             type="text"
             class="form-control bw-2 font-w-500 ft-wh b-wh bg-sc"
-            id="nome"
+            id="name"
+            name="name"
             aria-describedby="nomeHelp"
             placeholder="Nome"
             required
@@ -22,20 +24,24 @@
         <div class="form-group">
           <label for="username">Username</label>
           <input
+            [(ngModel)]="user.username"
             type="text"
             class="form-control bw-2 font-w-500 ft-wh b-wh bg-sc"
             id="username"
+            name="username"
             aria-describedby="usernameHelp"
             placeholder="Username"
             required
           />
         </div>
         <div class="form-group">
-          <label for="foto">Foto de perfil</label>
+          <label for="picture">Foto de perfil</label>
           <input
+            [(ngModel)]="user.picture"
             type="text"
             class="form-control bw-2 font-w-500 ft-wh b-wh bg-sc"
-            id="foto"
+            id="picture"
+            name="picture"
             aria-describedby="fotoHelp"
             placeholder="Link da foto"
             required
@@ -46,39 +52,67 @@
         <div class="form-group">
           <label for="email">Email</label>
           <input
+            [(ngModel)]="user.email"
             type="email"
             class="form-control bw-2 font-w-500 ft-wh b-wh bg-sc"
             id="email"
+            name="email"
             aria-describedby="emailHelp"
             placeholder="Digite seu Email"
             required
           />
         </div>
         <div class="form-group">
-          <label for="senha">Senha</label>
+          <label for="passwd">Senha</label>
           <input
+            (input)="passwdCheck($event)"
             type="password"
             class="form-control bw-2 font-w-500 ft-wh b-wh"
-            id="senha"
+            id="passwd"
+            name="passwd"
             placeholder="Senha"
             required
           />
         </div>
-        <div class="d-flex justify-content-around">
-          <button
-            type="submit"
-            class="btn b-wh bw-2 bg-transparent font-w-500 ft-wh"
-          >
-            Registrar
-          </button>
-          <button
-            routerLink="/login"
-            class="btn b-red bw-2 bg-transparent font-w-500 ft-red"
-          >
-            Cancelar
-          </button>
+        <div class="form-group">
+          <label for="passwd">Confirmar Senha</label>
+          <input
+            [(ngModel)]="user.passwd"
+            type="password"
+            class="form-control bw-2 font-w-500 ft-wh b-wh"
+            id="passwdCheck"
+            name="passwdCheck"
+            placeholder="Digite novamente"
+            required
+          />
         </div>
       </div>
-    </form>
+      <div class="form-block">
+
+        <div class="form-group">
+          <label for="user_role">Tipo de usuário</label>
+        <select class="form-control" name="user_role" id="user_role" (change)="userRole($event)">
+          <option>Selecione um tipo de usuário:</option>
+          <option value="normal">Normal</option>
+          <option value="adm">Admin</option>
+        </select>
+      </div>
+      <div class="d-flex justify-content-around">
+        <button
+        type="submit"
+        class="btn b-wh bw-2 bg-transparent font-w-500 ft-wh"
+        (click)="register($event)"
+        >
+        Registrar
+      </button>
+      <button
+      routerLink="/login"
+      class="btn b-red bw-2 bg-transparent font-w-500 ft-red"
+      >
+      Cancelar
+    </button>
   </div>
+</div>
+</form>
+</div>
 </div>

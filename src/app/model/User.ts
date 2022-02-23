@@ -7,5 +7,6 @@ export class User {
   public username: string
   public picture: string
   public user_role: string
+  public passwd: string
   public posts: Post []
 }
