@@ -25,14 +25,6 @@ a:hover {
   font-weight: 500;
 }
 
-.bw-2 {
-  border-width: 2px !important;
-}
-
-.size {
-  height: 100vh;
-}
-
 .ft-wh {
   color: var(--color-wh)
 }

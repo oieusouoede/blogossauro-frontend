@@ -4,7 +4,7 @@ form {
   font-family: 'Raleway', sans-serif;
 }
 
-input, input:focus {
+select, input, input:focus {
   background-color: transparent;
   color: var(--color-wh);
 }
@@ -21,14 +21,6 @@ a:hover {
   font-weight: 500;
 }
 
-.bw-2 {
-  border-width: 2px !important;
-}
-
-.size {
-  height: 100vh;
-}
-
 .ft-wh {
   color: var(--color-wh)
 }
@@ -37,3 +29,6 @@ a:hover {
   border-color: var(--color-wh) !important;
 }
 
+.login-container {
+  max-width: 400px;
+}

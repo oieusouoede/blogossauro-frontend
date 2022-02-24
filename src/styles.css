@@ -50,3 +50,15 @@
 .ft-wh {
   color: var(--color-wh)
 }
+
+
+/* Sizing */
+
+.full-size {
+  height: fit-content;
+  min-height: 100vh;
+}
+
+.bw-2 {
+  border-width: 2px !important;
+}
