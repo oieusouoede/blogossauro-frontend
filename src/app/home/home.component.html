@@ -1,1 +1,289 @@
-<p>home works!</p>
+<div class="container-fluid bg-pr">
+  <div class="row d-flex align-items-start p-5">
+    <div class="col-md-3 text-white text-center p-4">
+      <div class="avatar d-flex justify-content-center">
+        <img
+          src="{{ setAvatar() }}"
+          alt="avatar"
+          width="200px"
+          height="200px"
+          class="rounded-circle"
+        />
+      </div>
+      <h5 class="mt-3">
+        Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros
+        commodo tempor.
+      </h5>
+    </div>
+    <div class="col-md-6">
+      <div class="row text-white">
+        <div class="col-md-12">
+          <h1>Bem vindo(a), {{ name }}!</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 p-4">
+          <p>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-toggle="collapse"
+              data-target="#postForm"
+              aria-expanded="false"
+              aria-controls="postForm"
+            >
+              Nova postagem
+            </button>
+          </p>
+          <div class="collapse" id="postForm">
+            <div class="card card-body bg-transparent bw-2">
+              <form>
+                <h2 class="text-light mb-3">Nova postagem</h2>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    if="title"
+                    name="title"
+                    class="form-control"
+                    placeholder="Insira um título"
+                  />
+                </div>
+                <div class="form-group">
+                  <textarea
+                    name="content"
+                    id="content"
+                    rows="5"
+                    class="form-control"
+                    placeholder="Escreva alguma coisa"
+                  >
+                  </textarea>
+                </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    if="picture"
+                    name="picture"
+                    class="form-control"
+                    placeholder="Link da imagem"
+                  />
+                </div>
+                <div class="form-group">
+                  <select name="subject" id="subject" class="form-control">
+                    <option value="">Temas</option>
+                  </select>
+                </div>
+                <div class="form-group d-flex">
+                  <button type="submit" class="btn btn-primary mr-2">
+                    Publicar
+                  </button>
+                  <button
+                    class="btn btn-danger mr-auto"
+                    data-toggle="collapse"
+                    data-target="#postForm"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    *ngIf="auth.isAdmin()"
+                    class="btn btn-primary"
+                    data-toggle="modal"
+                    data-target="#subjectModal"
+                  >
+                    Novo tema
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 p-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">
+                Mussum Ipsum, cacilds vidis litro abertis. Admodum accumsan
+                disputationi eu sit. Vide electram sadipscing et per. Per
+                aumento de cachacis, eu reclamis. Paisis, filhis, espiritis
+                santis. Cevadis im ampola pa arma uma pindureta.
+              </p>
+              <!-- <img src="" alt=""> -->
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">
+                Mussum Ipsum, cacilds vidis litro abertis. Admodum accumsan
+                disputationi eu sit. Vide electram sadipscing et per. Per
+                aumento de cachacis, eu reclamis. Paisis, filhis, espiritis
+                santis. Cevadis im ampola pa arma uma pindureta.
+              </p>
+              <!-- <img src="" alt=""> -->
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">
+                Mussum Ipsum, cacilds vidis litro abertis. Admodum accumsan
+                disputationi eu sit. Vide electram sadipscing et per. Per
+                aumento de cachacis, eu reclamis. Paisis, filhis, espiritis
+                santis. Cevadis im ampola pa arma uma pindureta.
+              </p>
+              <!-- <img src="" alt=""> -->
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Subject Modal -->
+<div
+  *ngIf="auth.isAdmin()"
+  class="modal fade"
+  id="subjectModal"
+  tabindex="-1"
+  aria-labelledby="subjectModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="subjectModalLabel">Temas</h1>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Veja aqui todos os temas ou cadastre um novo:</h5>
+        <ul class="nav nav-pills my-4" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link active"
+              id="pills-all-subjects-tab"
+              data-toggle="pill"
+              href="#pills-all-subjects"
+              role="tab"
+              aria-controls="pills-all-subjects"
+              aria-selected="true"
+              >Todos os temas</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="pills-register-tab"
+              data-toggle="pill"
+              href="#pills-register"
+              role="tab"
+              aria-controls="pills-register"
+              aria-selected="false"
+              >Cadastrar tema</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="pills-dinosaur-tab"
+              data-toggle="pill"
+              href="#pills-dinosaur"
+              role="tab"
+              aria-controls="pills-dinosaur"
+              aria-selected="false"
+              >Dinossauro</a
+            >
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div
+            class="tab-pane fade show active"
+            id="pills-all-subjects"
+            role="tabpanel"
+            aria-labelledby="pills-all-subjects-tab"
+          >
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="pills-register"
+            role="tabpanel"
+            aria-labelledby="pills-register-tab"
+          >
+            <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="desc"
+              placeholder="Digite a descrição do tema"
+            />
+          </div>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-primary">Cadastrar</button>
+          </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="pills-dinosaur"
+            role="tabpanel"
+            aria-labelledby="pills-dinosaur-tab"
+          >
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&t">
+              <img src="https://i.imgur.com/Kw9kCQb.jpeg" alt="Dinossauro secreto" width="100%">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
