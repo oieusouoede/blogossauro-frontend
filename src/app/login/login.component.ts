@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
         environment.role = this.userCredentials.user_role
         environment.username = this.userCredentials.username
 
+        console.log(environment)
+
         this.router.navigate(['/home'])
       },
       error: err => {

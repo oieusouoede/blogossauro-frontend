@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
+import { Subject } from '../model/Subject';
 import { AuthService } from '../service/auth.service';
+import { SubjectService } from '../service/subject.service';
 
 @Component({
   selector: 'app-home',
@@ -9,14 +11,26 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+
   name = environment.name;
   picture = environment.picture;
+  subject: Subject = new Subject()
+  subjectList: Subject[]
 
-  constructor(private router: Router, public auth: AuthService) {}
+  constructor(
+    private router: Router,
+    private subjectService: SubjectService,
+    public auth: AuthService
+
+    ) {}
 
   ngOnInit() {
+
+    window.scroll(0,0)
+
     if (environment.token == '') {
       this.router.navigate(['/login']);
+      alert('Usuário não autenticado');
     }
   }
 
@@ -26,5 +40,20 @@ export class HomeComponent implements OnInit {
     } else {
       return this.picture;
     }
+  }
+
+  listSubjects(){
+    this.subjectService.getAllSubjects().subscribe((resp: Subject[]) => {
+      this.subjectList = resp
+    })
+  }
+
+  newSubject(){
+    this.subjectService.postSubject(this.subject).subscribe((resp: Subject) => {
+      this.subject = resp
+      alert('Novo tema cadastrado com sucesso!')
+      this.subject = new Subject()
+      this.listSubjects()
+    })
   }
 }
