@@ -48,9 +48,12 @@
 }
 
 .ft-wh {
-  color: var(--color-wh)
+  color: var(--color-wh);
 }
 
+.ft-red {
+  color: var(--color-red);
+}
 
 /* Sizing */
 

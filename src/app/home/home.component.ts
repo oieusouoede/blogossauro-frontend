@@ -52,7 +52,31 @@ export class HomeComponent implements OnInit {
     this.subjectService.postSubject(this.subject).subscribe((resp: Subject) => {
       this.subject = resp
       alert('Novo tema cadastrado com sucesso!')
-      this.subject = new Subject()
+      this.resetSubject()
+      this.listSubjects()
+    })
+  }
+
+  setSubject(modifiedSbj: Subject){
+      this.subject = modifiedSbj
+  }
+
+  saveSubject(){
+    this.subjectService.putSubject(this.subject).subscribe((resp: Subject) => {
+      this.subject = resp
+      alert("Tema atualizado!")
+      this.resetSubject()
+      this.listSubjects()
+    })
+  }
+
+  resetSubject(){
+    this.subject = new Subject()
+  }
+
+  deleteSubject(id: number){
+    this.subjectService.deleteSubject(id).subscribe(() => {
+      alert("Tema deletado!")
       this.listSubjects()
     })
   }

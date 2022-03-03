@@ -21,7 +21,20 @@ export class SubjectService {
     return this.http.get<Subject[]>('https://blogossauro.herokuapp.com/subject/all', this.token);
   }
 
+  getSubjectById(id: number): Observable<Subject>{
+    return this.http.get<Subject>(`https://blogossauro.herokuapp.com/subject/${id}`, this.token)
+  }
+
   postSubject(subject: Subject): Observable<Subject> {
     return this.http.post<Subject>('https://blogossauro.herokuapp.com/subject', subject, this.token);
   }
+
+  putSubject(subject: Subject): Observable<Subject> {
+    return this.http.put<Subject>("https://blogossauro.herokuapp.com/subject", subject, this.token);
+  }
+
+  deleteSubject(id: number){
+    return this.http.delete(`https://blogossauro.herokuapp.com/subject/${id}`, this.token);
+  }
+
 }
