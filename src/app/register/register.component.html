@@ -88,31 +88,46 @@
         </div>
       </div>
       <div class="form-block">
-
+        <div class="form-group">
+          <label for="biography">Bio</label>
+          <textarea
+            [(ngModel)]="user.biography"
+            class="form-control"
+            name="biography"
+            id="biography"
+            rows="5"
+            placeholder="Escreva uma breve apresentação"
+          ></textarea>
+        </div>
         <div class="form-group">
           <label for="user_role">Tipo de usuário</label>
-        <select class="form-control" name="user_role" id="user_role" (change)="userRole($event)">
-          <option>Selecione um tipo de usuário:</option>
-          <option value="normal">Normal</option>
-          <option value="adm">Admin</option>
-        </select>
+          <select
+            class="form-control"
+            name="user_role"
+            id="user_role"
+            (change)="userRole($event)"
+          >
+            <option>Selecione um tipo de usuário:</option>
+            <option value="normal">Normal</option>
+            <option value="adm">Admin</option>
+          </select>
+        </div>
+        <div class="d-flex justify-content-around">
+          <button
+            type="submit"
+            class="btn b-wh bw-2 bg-transparent font-w-500 ft-wh"
+            (click)="register($event)"
+          >
+            Registrar
+          </button>
+          <button
+            routerLink="/login"
+            class="btn b-red bw-2 bg-transparent font-w-500 ft-red"
+          >
+            Cancelar
+          </button>
+        </div>
       </div>
-      <div class="d-flex justify-content-around">
-        <button
-        type="submit"
-        class="btn b-wh bw-2 bg-transparent font-w-500 ft-wh"
-        (click)="register($event)"
-        >
-        Registrar
-      </button>
-      <button
-      routerLink="/login"
-      class="btn b-red bw-2 bg-transparent font-w-500 ft-red"
-      >
-      Cancelar
-    </button>
+    </form>
   </div>
-</div>
-</form>
-</div>
 </div>
