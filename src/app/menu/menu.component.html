@@ -17,13 +17,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/home">Início<span class="sr-only"></span></a>
+        <a class="nav-link" routerLink="/home"
+          >Início<span class="sr-only"></span
+        ></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Perfil</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">Postagens</a>
       </li>
     </ul>
     <div class="nav-item dropdown d-flex align-items-center h-auto">
@@ -36,7 +35,7 @@
         aria-expanded="false"
       >
         <img
-          src="{{setAvatar()}}"
+          src="{{ picture }}"
           alt="avatar"
           width="50px"
           height="50px"
@@ -49,19 +48,13 @@
       >
         <a class="dropdown-item disabled" href="#">
           <p>
-            {{name}}
-          </p>
-        </a>
-        <a class="dropdown-item" href="#">
-          <p>
-            <i class="fa fa-user-plus mr-1" aria-hidden="true"></i>
-            Registrar
+            {{ name }}
           </p>
         </a>
         <a class="dropdown-item" href="#">
           <p>
             <i class="fa fa-sign-in mr-2" aria-hidden="true"></i>
-            Entrar
+            Perfil
           </p>
         </a>
         <div class="dropdown-divider"></div>

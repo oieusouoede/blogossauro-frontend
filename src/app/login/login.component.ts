@@ -9,42 +9,38 @@ import { AuthService } from '../service/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  userLogin: UserLogin = new UserLogin();
+  userCredentials: UserCredentials = new UserCredentials();
 
-  userLogin: UserLogin = new UserLogin()
-  userCredentials: UserCredentials = new UserCredentials()
-
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    window.scroll(0,0)
+    window.scroll(0, 0);
   }
 
-  login(event: any){
+  login(event: any) {
     this.authService.login(this.userLogin).subscribe({
       next: (resp: UserCredentials) => {
-        this.userCredentials = resp
+        this.userCredentials = resp;
 
-        environment.picture = this.userCredentials.picture
-        environment.id = this.userCredentials.id
-        environment.name = this.userCredentials.name
-        environment.token = this.userCredentials.basicToken
-        environment.email = this.userCredentials.email
-        environment.role = this.userCredentials.user_role
-        environment.username = this.userCredentials.username
+        environment.picture = this.userCredentials.picture;
+        environment.id = this.userCredentials.id;
+        environment.name = this.userCredentials.name;
+        environment.token = this.userCredentials.basicToken;
+        environment.email = this.userCredentials.email;
+        environment.role = this.userCredentials.user_role;
+        environment.username = this.userCredentials.username;
 
-        this.router.navigate(['/home'])
+        this.router.navigate(['/home']);
       },
-      error: err => {
-        if(err.status == 400){
-          alert("Usuário ou senha inválidos")
+      error: (err) => {
+        if (err.status == 400) {
+          alert('Usuário ou senha inválidos');
         }
-      }
-    })
+      },
+    });
   }
 }

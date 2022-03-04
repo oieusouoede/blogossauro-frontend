@@ -7,4 +7,5 @@ export const environment = {
   email: '',
   role: '',
   username: '',
+  biography: '',
 };

@@ -1,0 +1,130 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h1 class="modal-title" id="subjectModalLabel">Temas</h1>
+    <button
+      type="button"
+      class="close"
+      (click)="modalRef.hide()"
+      aria-label="Close"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h5>Veja aqui todos os temas ou cadastre um novo:</h5>
+    <ul class="nav nav-pills my-4" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a
+          (click)="listSubjects()"
+          class="nav-link active"
+          id="pills-all-subjects-tab"
+          data-toggle="pill"
+          href="#pills-all-subjects"
+          role="tab"
+          aria-controls="pills-all-subjects"
+          aria-selected="true"
+          >Todos os temas</a
+        >
+      </li>
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link"
+          id="pills-register-tab"
+          data-toggle="pill"
+          href="#pills-register"
+          role="tab"
+          aria-controls="pills-register"
+          aria-selected="false"
+          >Cadastrar tema</a
+        >
+      </li>
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link"
+          id="pills-dinosaur-tab"
+          data-toggle="pill"
+          href="#pills-dinosaur"
+          role="tab"
+          aria-controls="pills-dinosaur"
+          aria-selected="false"
+          >Dinossauro</a
+        >
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div
+        class="tab-pane fade show active"
+        id="pills-all-subjects"
+        role="tabpanel"
+        aria-labelledby="pills-all-subjects-tab"
+      >
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Descrição</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let subject of subjectList">
+              <th scope="row">{{ subject.id }}</th>
+              <td>{{ subject.description }}</td>
+              <td class="d-flex justify-content-end align-items-center">
+                <a (click)="openEditSubjectModal(subject)">
+                  <i
+                    class="fa fa-pencil-square-o ft-pr mr-3"
+                    aria-hidden="true"
+                  ></i>
+                </a>
+                <a (click)="openDeleteSubjectModal(subject)">
+                  <i class="fa fa-trash ft-red" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="pills-register"
+        role="tabpanel"
+        aria-labelledby="pills-register-tab"
+      >
+        <div class="form-group">
+          <input
+            [(ngModel)]="subject.description"
+            type="text"
+            class="form-control"
+            id="desc"
+            placeholder="Digite a descrição do tema"
+          />
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn pr-btn" (click)="newSubject()">
+            Cadastrar
+          </button>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="pills-dinosaur"
+        role="tabpanel"
+        aria-labelledby="pills-dinosaur-tab"
+      >
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&t">
+          <img
+            src="https://i.imgur.com/Kw9kCQb.jpeg"
+            alt="Dinossauro secreto"
+            width="100%"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn pr-btn" (click)="modalRef.hide()">
+      Fechar
+    </button>
+  </div>
+</div>

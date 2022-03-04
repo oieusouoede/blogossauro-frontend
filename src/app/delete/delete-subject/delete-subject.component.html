@@ -1,0 +1,32 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 class="modal-title" id="deleteSubjectModalLabel">Editar tema</h2>
+    <button
+      type="button"
+      class="close"
+      (click)="modalRef.hide()"
+      aria-label="Close"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body form-group">
+    <h3>Tema {{ subject.id }} - {{ subject.description }}</h3>
+    <h5 class="text-center">
+      Atenção! Ao deletar este tema, todas as postagens relacionadas também
+      serão deletadas.
+    </h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn dgr-btn" (click)="modalRef.hide()">
+      Cancelar
+    </button>
+    <button
+      type="button"
+      class="btn pr-btn"
+      (click)="deleteSubject(subject.id)"
+    >
+      Confirmar
+    </button>
+  </div>
+</div>
