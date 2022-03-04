@@ -1,0 +1,142 @@
+<div class="row">
+  <div class="col-md-12 p-4">
+    <p>
+      <button
+        class="btn pr-btn"
+        type="button"
+        data-toggle="collapse"
+        data-target="#postForm"
+        aria-expanded="false"
+        aria-controls="postForm"
+      >
+        Nova postagem
+      </button>
+    </p>
+    <div class="collapse" id="postForm">
+      <div class="card card-body b-white bg-transparent bw-2">
+        <form>
+          <h2 class="text-light mb-3">Nova postagem</h2>
+          <div class="form-group">
+            <input
+              [(ngModel)]="post.title"
+              type="text"
+              if="title"
+              name="title"
+              class="form-control"
+              placeholder="Insira um título"
+            />
+          </div>
+          <div class="form-group">
+            <textarea
+              [(ngModel)]="post.content"
+              name="content"
+              id="content"
+              rows="5"
+              class="form-control"
+              placeholder="Escreva alguma coisa"
+            >
+            </textarea>
+          </div>
+          <div class="form-group">
+            <input
+              [(ngModel)]="post.picture"
+              type="text"
+              if="picture"
+              name="picture"
+              class="form-control"
+              placeholder="Link da imagem"
+            />
+          </div>
+          <div class="form-group">
+            <select
+              name="subject"
+              id="subject"
+              class="form-control"
+              [(ngModel)]="subjectId"
+              (change)="subjectById()"
+            >
+              <option [ngValue]="undefined" hidden disabled>
+                Selecione um tema
+              </option>
+              <option
+                *ngFor="let subject of subjectList"
+                value="{{ subject.id }}"
+              >
+                {{ subject.description }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group d-flex">
+            <button
+              type="submit"
+              class="btn pr-btn mr-2"
+              (click)="createPost()"
+              data-toggle="collapse"
+              data-target="#postForm"
+            >
+              Publicar
+            </button>
+            <button
+              class="btn dgr-btn mr-auto"
+              data-toggle="collapse"
+              data-target="#postForm"
+            >
+              Cancelar
+            </button>
+            <button
+              *ngIf="auth.isAdmin()"
+              (click)="openSubjectModal()"
+              class="btn pr-btn"
+            >
+              Novo tema
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <h2 class="text-white">Feed</h2>
+    <div class="card" *ngFor="let post of postsList">
+      <div class="card-body p-5">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h3 class="card-title m-2">{{ post.title }}</h3>
+            <small class="card-subtitle text-muted">
+              Publicado por {{ post.author.name }} em
+              {{ post.creation_date | date: "dd/MM/yyyy" }} às
+              {{ post.creation_date | date: "hh:mm:ss" }}
+            </small>
+            <small class="text-muted"
+              >Assunto: {{ post.subject.description }}</small
+            >
+          </div>
+          <img
+            src="{{ post.author.picture }}"
+            alt="author"
+            width="40px"
+            height="40px"
+            class="rounded-circle"
+          />
+        </div>
+        <div class="my-4">
+          <p class="card-text">{{ post.content }}</p>
+          <div class="post-image d-flex justify-content-center">
+            <img
+              class="img-fluid"
+              *ngIf="hasImage(post.picture)"
+              src="{{ post.picture }}"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="d-flex align-items-center" *ngIf="isAuthor(post.author.id)">
+          <a>
+            <i class="fa fa-pencil-square-o ft-pr mr-3" aria-hidden="true"></i>
+          </a>
+          <a>
+            <i class="fa fa-trash ft-red" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
