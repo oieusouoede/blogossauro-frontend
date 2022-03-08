@@ -59,7 +59,7 @@
                 Selecione um tema
               </option>
               <option
-                *ngFor="let subject of subjectList"
+                *ngFor="let subject of this.subjectService.subjectList"
                 value="{{ subject.id }}"
               >
                 {{ subject.description }}
@@ -95,7 +95,7 @@
       </div>
     </div>
     <h2 class="text-white">Feed</h2>
-    <div class="card" *ngFor="let post of postsList">
+    <div class="card" *ngFor="let post of this.postsService.postsList">
       <div class="card-body p-5">
         <div class="d-flex justify-content-between align-items-center">
           <div>
@@ -129,10 +129,10 @@
           </div>
         </div>
         <div class="d-flex align-items-center" *ngIf="isAuthor(post.author.id)">
-          <a>
+          <a (click)="openEditPostModal(post)">
             <i class="fa fa-pencil-square-o ft-pr mr-3" aria-hidden="true"></i>
           </a>
-          <a>
+          <a (click)="openDeletePostModal(post)">
             <i class="fa fa-trash ft-red" aria-hidden="true"></i>
           </a>
         </div>

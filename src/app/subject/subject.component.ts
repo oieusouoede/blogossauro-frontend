@@ -13,23 +13,16 @@ import { SubjectService } from '../service/subject.service';
 export class SubjectComponent implements OnInit {
   modalR: BsModalRef;
   subject: Subject = new Subject();
-  subjectList: Subject[];
   subjectId: number;
 
   constructor(
-    private subjectService: SubjectService,
+    public subjectService: SubjectService,
     private modalService: BsModalService,
     public modalRef: BsModalRef
   ) {}
 
   ngOnInit() {
-    this.listSubjects();
-  }
-
-  listSubjects() {
-    this.subjectService.getAllSubjects().subscribe((resp: Subject[]) => {
-      this.subjectList = resp;
-    });
+    this.subjectService.listSubjects();
   }
 
   newSubject() {
@@ -37,7 +30,7 @@ export class SubjectComponent implements OnInit {
       this.subject = resp;
       alert('Novo tema cadastrado com sucesso!');
       this.resetSubject();
-      this.listSubjects();
+      this.subjectService.listSubjects();
     });
   }
 
@@ -47,7 +40,7 @@ export class SubjectComponent implements OnInit {
       alert('Tema atualizado!');
       this.modalR.hide();
       this.resetSubject();
-      this.listSubjects();
+      this.subjectService.listSubjects();
     });
   }
 
@@ -66,9 +59,6 @@ export class SubjectComponent implements OnInit {
     const initialState = { subject: sbj };
     this.modalR = this.modalService.show(DeleteSubjectComponent, {
       initialState,
-    });
-    this.modalR.content.hideEvent.pipe(1).subscribe(() => {
-      this.listSubjects();
     });
   }
 }

@@ -19,8 +19,9 @@ export class DeleteSubjectComponent implements OnInit {
 
   deleteSubject(id: number) {
     this.subjectService.deleteSubject(id).subscribe(() => {
-      alert('Tema deletado!');
       this.modalRef.hide();
+      alert('Tema deletado!');
+      this.subjectService.listSubjects();
     });
   }
 }

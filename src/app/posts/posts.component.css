@@ -37,6 +37,10 @@
   font-size: 20pt;
 }
 
+.fa:hover {
+  cursor: pointer;
+}
+
 .fa-trash {
   padding-bottom: 5px;
 }

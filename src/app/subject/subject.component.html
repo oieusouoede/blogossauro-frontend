@@ -15,7 +15,7 @@
     <ul class="nav nav-pills my-4" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
         <a
-          (click)="listSubjects()"
+          (click)="this.subjectService.listSubjects()"
           class="nav-link active"
           id="pills-all-subjects-tab"
           data-toggle="pill"
@@ -67,7 +67,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let subject of subjectList">
+            <tr *ngFor="let subject of this.subjectService.subjectList">
               <th scope="row">{{ subject.id }}</th>
               <td>{{ subject.description }}</td>
               <td class="d-flex justify-content-end align-items-center">

@@ -2,6 +2,10 @@
   font-size: 20pt;
 }
 
+.fa:hover {
+  cursor: pointer;
+}
+
 .fa-trash {
   line-height: 0;
 }

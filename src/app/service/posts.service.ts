@@ -8,6 +8,8 @@ import { Post } from '../model/Post';
   providedIn: 'root',
 })
 export class PostsService {
+  postsList: Post[];
+
   constructor(private http: HttpClient) {}
 
   token = {
@@ -49,5 +51,11 @@ export class PostsService {
       `https://blogossauro.herokuapp.com/posts/${id}`,
       this.token
     );
+  }
+
+  listPosts() {
+    this.getAllPosts().subscribe((resp: Post[]) => {
+      this.postsList = resp;
+    });
   }
 }

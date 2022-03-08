@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { environment } from 'src/environments/environment.prod';
+import { DeletePostComponent } from '../delete/delete-post/delete-post.component';
+import { EditPostComponent } from '../edit/edit-post/edit-post.component';
 import { Post } from '../model/Post';
 import { Subject } from '../model/Subject';
 import { User } from '../model/User';
@@ -15,30 +17,23 @@ import { SubjectComponent } from '../subject/subject.component';
   styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit {
-  modalRef: BsModalRef;
+  modalR: BsModalRef;
   subject: Subject = new Subject();
   subjectId: number;
-  subjectList: Subject[];
   post: Post = new Post();
-  postsList: Post[];
   user: User = new User();
 
   constructor(
-    private postsService: PostsService,
-    private subjectService: SubjectService,
+    public postsService: PostsService,
+    public subjectService: SubjectService,
     private modalService: BsModalService,
+    public modalRef: BsModalRef,
     public auth: AuthService
   ) {}
 
   ngOnInit() {
-    this.listSubjects();
-    this.getAllPosts();
-  }
-
-  listSubjects() {
-    this.subjectService.getAllSubjects().subscribe((resp: Subject[]) => {
-      this.subjectList = resp;
-    });
+    this.subjectService.listSubjects();
+    this.postsService.listPosts();
   }
 
   subjectById() {
@@ -59,13 +54,7 @@ export class PostsComponent implements OnInit {
       this.post = resp;
       alert('Publicado!');
       this.post = new Post();
-      this.getAllPosts();
-    });
-  }
-
-  getAllPosts() {
-    this.postsService.getAllPosts().subscribe((resp: Post[]) => {
-      this.postsList = resp;
+      this.postsService.listPosts();
     });
   }
 
@@ -86,6 +75,20 @@ export class PostsComponent implements OnInit {
   }
 
   openSubjectModal() {
-    this.modalRef = this.modalService.show(SubjectComponent);
+    this.modalR = this.modalService.show(SubjectComponent);
+  }
+
+  openDeletePostModal(post: Post) {
+    const initialState = { post: post };
+    this.modalR = this.modalService.show(DeletePostComponent, {
+      initialState,
+    });
+  }
+
+  openEditPostModal(post: Post) {
+    const initialState = { post: post };
+    this.modalR = this.modalService.show(EditPostComponent, {
+      initialState,
+    });
   }
 }

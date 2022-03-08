@@ -12,23 +12,28 @@ import { SubjectService } from 'src/app/service/subject.service';
 export class EditSubjectComponent implements OnInit {
   subject: any;
   newDescription: string;
+
   constructor(
     private subjectService: SubjectService,
     public modalRef: BsModalRef
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.newDescription = this.subject.description;
+  }
 
   saveSubject() {
     this.subject.description = this.newDescription;
     this.subjectService.putSubject(this.subject).subscribe((resp: Subject) => {
       this.subject = resp;
-      alert('Tema atualizado!');
       this.modalRef.hide();
+      alert('Tema atualizado!');
+      this.subjectService.listSubjects();
     });
   }
 
   cancel() {
+    this.subjectService.listSubjects();
     this.modalRef.hide();
   }
 }
