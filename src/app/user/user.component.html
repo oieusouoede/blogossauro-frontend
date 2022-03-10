@@ -1,0 +1,83 @@
+<div class="container-fluid bg-pr">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-5 p-5 text-white text-center">
+      <div class="d-flex justify-content-center">
+        <img
+          src="{{ user.picture }}"
+          alt="avatar"
+          width="200px"
+          height="200px"
+          class="rounded-circle"
+        />
+      </div>
+      <h2 class="mt-3">{{ user.name }}</h2>
+      <h5 class="mt-3">
+        Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros
+        commodo tempor.
+      </h5>
+      <button
+        class="btn btn-pr"
+        *ngIf="user.id == userId"
+        (click)="openEditUserModal(user)"
+      >
+        Editar Perfil
+      </button>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-white mb-3">Publicações</h2>
+      <div class="card" *ngFor="let post of user.posts">
+        <div class="card-body p-5">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h3 class="card-title mb-2">{{ post.title }}</h3>
+              <small class="card-subtitle text-muted">
+                Publicado por {{ user.name }}
+                em
+                {{ post.creation_date | date: "dd/MM/yyyy" }} às
+                {{ post.creation_date | date: "hh:mm:ss" }}
+              </small>
+              <br />
+              <small class="text-muted"
+                >Assunto: {{ post.subject.description }}</small
+              >
+            </div>
+            <img
+              src="{{ user.picture }}"
+              alt="author"
+              width="40px"
+              height="40px"
+              class="rounded-circle"
+            />
+          </div>
+          <div class="my-4">
+            <p class="card-text">{{ post.content }}</p>
+            <div class="post-image d-flex justify-content-center">
+              <img
+                class="img-fluid"
+                *ngIf="hasImage(post.picture)"
+                src="{{ post.picture }}"
+                alt=""
+              />
+            </div>
+          </div>
+          <div
+            class="d-flex align-items-center"
+            *ngIf="this.userService.isAuthor(user.id)"
+          >
+            <a (click)="openEditPostModal(post)">
+              <i
+                class="fa fa-pencil-square-o ft-pr mr-3"
+                aria-hidden="true"
+              ></i>
+            </a>
+            <a (click)="openDeletePostModal(post)">
+              <i class="fa fa-trash ft-red" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

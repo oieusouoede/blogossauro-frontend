@@ -9,6 +9,7 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  userId = environment.id;
   name = environment.name;
   picture = environment.picture;
 

@@ -99,23 +99,29 @@
       <div class="card-body p-5">
         <div class="d-flex justify-content-between align-items-center">
           <div>
-            <h3 class="card-title m-2">{{ post.title }}</h3>
+            <h3 class="card-title mb-2">{{ post.title }}</h3>
             <small class="card-subtitle text-muted">
-              Publicado por {{ post.author.name }} em
-              {{ post.creation_date | date: "dd/MM/yyyy" }} às
+              Publicado por
+              <a [routerLink]="['/user', post.author.id]">{{
+                post.author.name
+              }}</a>
+              em {{ post.creation_date | date: "dd/MM/yyyy" }} às
               {{ post.creation_date | date: "hh:mm:ss" }}
             </small>
+            <br />
             <small class="text-muted"
               >Assunto: {{ post.subject.description }}</small
             >
           </div>
-          <img
-            src="{{ post.author.picture }}"
-            alt="author"
-            width="40px"
-            height="40px"
-            class="rounded-circle"
-          />
+          <a [routerLink]="['/user', post.author.id]">
+            <img
+              src="{{ post.author.picture }}"
+              alt="author"
+              width="40px"
+              height="40px"
+              class="rounded-circle"
+            />
+          </a>
         </div>
         <div class="my-4">
           <p class="card-text">{{ post.content }}</p>
@@ -128,7 +134,10 @@
             />
           </div>
         </div>
-        <div class="d-flex align-items-center" *ngIf="isAuthor(post.author.id)">
+        <div
+          class="d-flex align-items-center"
+          *ngIf="this.userService.isAuthor(post.author.id)"
+        >
           <a (click)="openEditPostModal(post)">
             <i class="fa fa-pencil-square-o ft-pr mr-3" aria-hidden="true"></i>
           </a>

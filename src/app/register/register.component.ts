@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(event: any) {
-    this.user.user_role = this.role;
+    this.user.user_role = 'normal';
 
     if (this.user.passwd != this.passwdToCheck) {
       alert('As senhas são diferentes');

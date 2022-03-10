@@ -18,6 +18,8 @@ import { EditSubjectComponent } from './edit/edit-subject/edit-subject.component
 import { EditPostComponent } from './edit/edit-post/edit-post.component';
 import { DeletePostComponent } from './delete/delete-post/delete-post.component';
 import { DeleteSubjectComponent } from './delete/delete-subject/delete-subject.component';
+import { UserComponent } from './user/user.component';
+import { EditUserComponent } from './edit/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { DeleteSubjectComponent } from './delete/delete-subject/delete-subject.c
     EditPostComponent,
     DeletePostComponent,
     DeleteSubjectComponent,
+    UserComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

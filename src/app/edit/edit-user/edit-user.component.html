@@ -1,0 +1,118 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 class="modal-title" id="editUserModalLabel">Editar Perfil</h2>
+    <button
+      type="button"
+      class="close"
+      (click)="modalRef.hide()"
+      aria-label="Close"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="ft-wh d-flex flex-wrap">
+      <div class="form-block">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input
+            [(ngModel)]="editedUser.name"
+            type="text"
+            class="form-control bw-2 font-w-500 ft-wh b-wh bg-sc"
+            id="name"
+            name="name"
+            aria-describedby="nomeHelp"
+            placeholder="Nome"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            [(ngModel)]="editedUser.username"
+            type="text"
+            class="form-control bw-2 font-w-500 ft-wh b-wh bg-sc"
+            id="username"
+            name="username"
+            aria-describedby="usernameHelp"
+            placeholder="Username"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="picture">Foto de perfil</label>
+          <input
+            [(ngModel)]="editedUser.picture"
+            type="text"
+            class="form-control bw-2 font-w-500 ft-wh b-wh bg-sc"
+            id="picture"
+            name="picture"
+            aria-describedby="fotoHelp"
+            placeholder="Link da foto"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-block">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            [(ngModel)]="editedUser.email"
+            type="email"
+            class="form-control bw-2 font-w-500 ft-wh b-wh bg-sc"
+            id="email"
+            name="email"
+            aria-describedby="emailHelp"
+            placeholder="Digite seu Email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="passwd">Senha</label>
+          <input
+            (input)="passwdCheck($event)"
+            type="password"
+            class="form-control bw-2 font-w-500 ft-wh b-wh"
+            id="passwd"
+            name="passwd"
+            placeholder="Senha"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="passwd">Confirmar Senha</label>
+          <input
+            [(ngModel)]="editedUser.passwd"
+            type="password"
+            class="form-control bw-2 font-w-500 ft-wh b-wh"
+            id="passwdCheck"
+            name="passwdCheck"
+            placeholder="Digite novamente"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-block">
+        <div class="form-group">
+          <label for="biography">Bio</label>
+          <textarea
+            [(ngModel)]="editedUser.biography"
+            class="form-control"
+            name="biography"
+            id="biography"
+            rows="5"
+            placeholder="Escreva uma breve apresentação"
+          ></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn dgr-btn" (click)="modalRef.hide()">
+      Cancelar
+    </button>
+    <button (click)="saveUser()" type="button" class="btn pr-btn">
+      Salvar
+    </button>
+  </div>
+</div>

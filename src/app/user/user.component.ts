@@ -1,75 +1,50 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { environment } from 'src/environments/environment.prod';
 import { DeletePostComponent } from '../delete/delete-post/delete-post.component';
 import { EditPostComponent } from '../edit/edit-post/edit-post.component';
+import { EditUserComponent } from '../edit/edit-user/edit-user.component';
 import { Post } from '../model/Post';
-import { Subject } from '../model/Subject';
 import { User } from '../model/User';
 import { AuthService } from '../service/auth.service';
 import { PostsService } from '../service/posts.service';
 import { SubjectService } from '../service/subject.service';
 import { UserService } from '../service/user.service';
-import { SubjectComponent } from '../subject/subject.component';
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css'],
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css'],
 })
-export class PostsComponent implements OnInit {
+export class UserComponent implements OnInit {
   modalR: BsModalRef;
-  subject: Subject = new Subject();
-  subjectId: number;
-  post: Post = new Post();
   user: User = new User();
+  userId: number;
 
   constructor(
     public postsService: PostsService,
     public subjectService: SubjectService,
     public userService: UserService,
-    private modalService: BsModalService,
     public modalRef: BsModalRef,
-    public auth: AuthService
+    public auth: AuthService,
+    private modalService: BsModalService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.subjectService.listSubjects();
-    this.postsService.listPosts();
-  }
-
-  subjectById() {
-    this.subjectService
-      .getSubjectById(this.subjectId)
-      .subscribe((resp: Subject) => {
-        this.subject = resp;
-      });
-  }
-
-  createPost() {
-    this.subject.id = this.subjectId;
-    this.user.id = environment.id;
-    this.post.subject = this.subject;
-    this.post.author = this.user;
-
-    this.postsService.savePost(this.post).subscribe((resp: Post) => {
-      this.post = resp;
-      alert('Publicado!');
-      this.post = new Post();
-      this.postsService.listPosts();
-    });
-  }
-
-  hasImage(picture: string) {
-    let pic = false;
-    if (picture != '') {
-      pic = true;
+    if (environment.token == '') {
+      this.router.navigate(['login']);
     }
-    return pic;
+    this.userId = this.route.snapshot.params['id'];
+    this.findUserById(this.userId);
   }
 
-  openSubjectModal() {
-    this.modalR = this.modalService.show(SubjectComponent);
+  findUserById(id: number) {
+    this.userService.getUserById(id).subscribe((resp: User) => {
+      this.user = resp;
+    });
   }
 
   openDeletePostModal(post: Post) {
@@ -84,5 +59,20 @@ export class PostsComponent implements OnInit {
     this.modalR = this.modalService.show(EditPostComponent, {
       initialState,
     });
+  }
+
+  openEditUserModal(user: User) {
+    const initialState = { user: user };
+    this.modalR = this.modalService.show(EditUserComponent, {
+      initialState,
+    });
+  }
+
+  hasImage(picture: string) {
+    let pic = false;
+    if (picture != '') {
+      pic = true;
+    }
+    return pic;
   }
 }
