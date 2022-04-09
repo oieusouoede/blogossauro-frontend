@@ -1,1 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600&display=swap");
+
+/* Palette */
+
+:root {
+  --color-pr: #1d3557;
+  --color-sc: #457b9d;
+  --color-bl: #a8dadc;
+  --color-wh: #f1faee;
+  --color-red: #e63946;
+}
+
+/* Background colors */
+
+.bg-pr {
+  background-color: var(--color-pr);
+}
+
+.bg-sc {
+  background-color: var(--color-sc);
+}
+
+.bg-bl {
+  background-color: var(--color-bl);
+}
+
+.bg-wh {
+  background-color: var(--color-wh);
+}
+
+.bg-red {
+  background-color: var(--color-red);
+}
+
+/* Border */
+
+.b-white {
+  border-color: var(--color-wh);
+}
+
+/* Font colors */
+
+.ft-pr {
+  color: var(--color-pr);
+}
+
+.ft-wh {
+  color: var(--color-wh);
+}
+
+.ft-red {
+  color: var(--color-red);
+}
+
+/* Sizing */
+
+.full-size {
+  height: fit-content;
+  min-height: 100vh;
+}
+
+.bw-2 {
+  border-width: 2px !important;
+}
+
+.min-vh-90 {
+  min-height: 90vh;
+}

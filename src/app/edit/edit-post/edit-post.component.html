@@ -1,0 +1,75 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 class="modal-title" id="editPostModalLabel">Editar Postagem</h2>
+    <button
+      type="button"
+      class="close"
+      (click)="modalRef.hide()"
+      aria-label="Close"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <input
+          [(ngModel)]="editedPost.title"
+          type="text"
+          if="title"
+          name="title"
+          class="form-control"
+          placeholder="Insira um título"
+        />
+      </div>
+      <div class="form-group">
+        <textarea
+          [(ngModel)]="editedPost.content"
+          name="content"
+          id="content"
+          rows="5"
+          class="form-control"
+          placeholder="Escreva alguma coisa"
+        >
+        </textarea>
+      </div>
+      <div class="form-group">
+        <input
+          [(ngModel)]="editedPost.picture"
+          type="text"
+          if="picture"
+          name="picture"
+          class="form-control"
+          placeholder="Link da imagem"
+        />
+      </div>
+      <div class="form-group">
+        <select
+          name="subject"
+          id="subject"
+          class="form-control"
+          [(ngModel)]="subjectId"
+          (change)="subjectById()"
+        >
+          <option [ngValue]="undefined" hidden disabled>
+            Selecione um tema
+          </option>
+          <option
+            *ngFor="let subject of this.subjectService.subjectList"
+            value="{{ subject.id }}"
+          >
+            {{ subject.description }}
+          </option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn dgr-btn" (click)="cancel()">
+      Cancelar
+    </button>
+    <button (click)="savePost()" type="button" class="btn pr-btn">
+      Salvar
+    </button>
+  </div>
+</div>

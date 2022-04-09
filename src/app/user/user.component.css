@@ -1,0 +1,46 @@
+.card {
+  margin-bottom: 25px;
+}
+
+.post-image {
+  width: 100%;
+}
+
+.b-white {
+  border: solid 2pt var(--color-wh) !important;
+}
+
+.pr-btn {
+  background-color: var(--color-pr);
+  border: solid 2pt var(--color-wh) !important;
+  color: white;
+}
+
+.pr-btn:hover {
+  background-color: var(--color-wh);
+  border: solid 2pt var(--color-sc) !important;
+  color: var(--color-sc);
+}
+
+.dgr-btn {
+  background-color: var(--color-red);
+  color: white;
+}
+
+.dgr-btn:hover {
+  background-color: var(--color-wh);
+  border: solid 2pt var(--color-red) !important;
+  color: var(--color-red);
+}
+
+.fa {
+  font-size: 20pt;
+}
+
+.fa:hover {
+  cursor: pointer;
+}
+
+.fa-trash {
+  padding-bottom: 5px;
+}

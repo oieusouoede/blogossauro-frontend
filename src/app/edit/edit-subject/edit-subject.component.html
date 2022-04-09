@@ -1,0 +1,32 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 class="modal-title" id="editSubjectModalLabel">Editar tema</h2>
+    <button
+      type="button"
+      class="close"
+      (click)="modalRef.hide()"
+      aria-label="Close"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body form-group">
+    <h3>Tema {{ subject.id }} - {{ subject.description }}</h3>
+    <input
+      [(ngModel)]="newDescription"
+      class="form-control"
+      type="text"
+      name="editSubject"
+      id="editSubject"
+      placeholder="Editar tema"
+    />
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn dgr-btn" (click)="modalRef.hide()">
+      Cancelar
+    </button>
+    <button (click)="saveSubject()" type="button" class="btn pr-btn">
+      Salvar
+    </button>
+  </div>
+</div>

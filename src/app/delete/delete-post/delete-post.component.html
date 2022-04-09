@@ -1,0 +1,26 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 class="modal-title" id="deletePostModalLabel">Deletar postagem</h2>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body form-group text-center">
+    <h5 class="text-center">Tem certeza que deseja deletar esta postagem?</h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn dgr-btn" (click)="modalRef.hide()">
+      Cancelar
+    </button>
+    <!-- (click)="modalRef.hide()" -->
+    <button type="button" class="btn pr-btn">
+      <!-- (click)="deletePost(post.id)" -->
+      Confirmar
+    </button>
+  </div>
+</div>

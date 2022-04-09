@@ -1,0 +1,16 @@
+.avatar {
+  height: 200;
+  width: 200;
+}
+
+.fa {
+  font-size: 20pt;
+}
+
+.fa-trash {
+  line-height: 0;
+}
+
+.b-white {
+  border: solid 2pt var(--color-wh) !important;
+}

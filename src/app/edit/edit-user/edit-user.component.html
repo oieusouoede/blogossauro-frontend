@@ -1,0 +1,196 @@
+<div class="container-fluid bg-pr min-vh-90 py-5">
+  <form class="row ft-wh d-flex justify-content-center align-items-center">
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Editar perfil</h2>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <div class="form-block">
+            <div class="form-group">
+              <label for="name">Nome</label>
+              <input
+                [(ngModel)]="editedUser.name"
+                type="text"
+                class="form-control bw-2 font-w-500 ft-wh b-wh bg-sc"
+                id="name"
+                name="name"
+                aria-describedby="nomeHelp"
+                placeholder="Nome"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                [(ngModel)]="editedUser.username"
+                type="text"
+                class="form-control bw-2 font-w-500 ft-wh b-wh bg-sc"
+                id="username"
+                name="username"
+                aria-describedby="usernameHelp"
+                placeholder="Username"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="picture">Foto de perfil</label>
+              <input
+                [(ngModel)]="editedUser.picture"
+                type="text"
+                class="form-control bw-2 font-w-500 ft-wh b-wh bg-sc"
+                id="picture"
+                name="picture"
+                aria-describedby="fotoHelp"
+                placeholder="Link da foto"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-block">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                [(ngModel)]="editedUser.email"
+                type="email"
+                class="form-control bw-2 font-w-500 ft-wh b-wh bg-sc"
+                id="email"
+                name="email"
+                aria-describedby="emailHelp"
+                placeholder="Digite seu Email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="biography">Bio</label>
+              <textarea
+                [(ngModel)]="editedUser.biography"
+                class="form-control"
+                name="biography"
+                id="biography"
+                rows="5"
+                placeholder="Escreva uma breve apresentação"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-block">
+            <button
+              class="btn btn-primary change-passwd"
+              type="button"
+              data-toggle="collapse"
+              data-target="#changePasswd"
+              aria-expanded="false"
+              aria-controls="changePasswd"
+            >
+              Alterar senha
+            </button>
+            <div class="collapse" id="changePasswd">
+              <div class="card card-body bg-pr">
+                <div class="form-group">
+                  <input
+                    (input)="getNewPasswd($event)"
+                    type="password"
+                    class="form-control bw-2 font-w-500 ft-wh b-wh"
+                    id="passwd"
+                    name="passwd"
+                    placeholder="Nova senha"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    (input)="confirmNewPasswd($event)"
+                    type="password"
+                    class="form-control bw-2 font-w-500 ft-wh b-wh"
+                    id="passwdCheck"
+                    name="passwdCheck"
+                    placeholder="Digite novamente"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-12 d-flex justify-content-end">
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            [routerLink]="['/user', userId]"
+          >
+            Cancelar
+          </button>
+          <button
+            (click)="confirmChanges(template)"
+            type="button"
+            class="btn btn-outline-light ml-2"
+          >
+            Confirmar
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Modal -->
+<!--
+<div
+  class="modal fade"
+  id="confirmPasswd"
+  tabindex="-1"
+  aria-labelledby="confirmPasswdLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+-->
+<ng-template #template>
+  <div class="modal-header">
+    <h5 class="modal-title" id="confirmPasswdLabel">Confirmar alterações</h5>
+    <button
+      type="button"
+      class="close"
+      (click)="bsModalRef.hide()"
+      aria-label="Close"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Por favor, insira sua senha atual para confirmar as alterações:
+    <div class="form-group">
+      <input
+        [(ngModel)]="this.currentPasswd"
+        type="password"
+        class="form-control bw-2 font-w-500 ft-wh b-wh"
+        id="currentPasswd"
+        name="currentPasswd"
+        placeholder="Senha atual"
+        required
+      />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
+      Cancelar
+    </button>
+    <button type="button" class="btn btn-primary" (click)="saveChanges()">
+      Salvar
+    </button>
+  </div>
+</ng-template>
+
+<!-- 
+</div>
+</div>
+</div>
+-->
