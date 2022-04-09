@@ -1,27 +1,44 @@
-# Blogossauro
+# Blogossauro - Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
+Esse projeto foi desenvolvido durante o Bootcamp Generation Brazil no módulo sobre Frontend com o Angular. Esse foi meu primeiro projeto utilizando o Angular e eu já virei entusiasta. Eu parti do modelo básico do instrutor e resolvi deixar ele com uma cara diferente. Ele tá longe de ser perfeito (quebra muito fácil), mas deu pra botar em prática muitos conceitos que vão ser úteis em projetos futuros.
 
-## Development server
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version .
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Especificações
 
-## Code scaffolding
+- Angular 13.2.0 (Angular CLI 13.2.3)
+- Bootstrap 4.5.3
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+E algumas outras dependências.
 
-## Build
+## Instalando o projeto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Você pode instalar o projeto com o npm usando o comando:
 
-## Running unit tests
+`npm install`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Rodando em servidor de desenvolvimento
 
-## Running end-to-end tests
+Pra rodar o projeto localmente em um servidor de desenvolvimento basta executar:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+`ng serve`
 
-## Further help
+O projeto vai estar disponível na url `http://localhost:4200/`.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Observações
+
+### Testes
+
+Essa aplicação não tem testes. Isso é um assunto pra outro momento e por enquanto eu não vou implementar.
+
+### Backend
+
+Esse site consome uma API que eu desenvolvi também durante o Bootcamp e que se encontra [neste repositório](https://github.com/oieusouoede/blogossauro), mas também existe um deploy pra ela no Heroku [neste link](https://blogossauro.herokuapp.com/swagger-ui.html) (apesar de o acesso ser restrito, mas qualquer coisa me da um toque).
+
+### Deploy
+
+Finalmente, esse site está hospedado no Netlify é só seguir [este link](https://blogossauro.netlify.app/).
+
+Por enquanto é só.
+
+Éde
