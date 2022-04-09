@@ -61,13 +61,6 @@ export class UserComponent implements OnInit {
     });
   }
 
-  openEditUserModal(user: User) {
-    const initialState = { user: user };
-    this.modalR = this.modalService.show(EditUserComponent, {
-      initialState,
-    });
-  }
-
   hasImage(picture: string) {
     let pic = false;
     if (picture != '') {

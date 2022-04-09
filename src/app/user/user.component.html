@@ -17,7 +17,7 @@
       <button
         class="btn btn-pr"
         *ngIf="user.id == userId"
-        (click)="openEditUserModal(user)"
+        [routerLink]="['/edit-user', userId]"
       >
         Editar Perfil
       </button>
