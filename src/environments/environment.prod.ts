@@ -8,4 +8,5 @@ export const environment = {
   role: '',
   username: '',
   biography: '',
+  apiURL: 'https://blogossauro.herokuapp.com',
 };

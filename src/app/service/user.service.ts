@@ -16,7 +16,7 @@ export class UserService {
 
   putUser(user: User): Observable<User> {
     return this.http.put<User>(
-      'https://blogossauro.herokuapp.com/api/user/update',
+      `${environment.apiURL}/api/user/update`,
       user,
       this.token
     );
@@ -24,7 +24,7 @@ export class UserService {
 
   getUserById(id: number): Observable<User> {
     return this.http.get<User>(
-      `https://blogossauro.herokuapp.com/api/user/${id}`,
+      `${environment.apiURL}/api/user/${id}`,
       this.token
     );
   }

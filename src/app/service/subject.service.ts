@@ -18,21 +18,21 @@ export class SubjectService {
 
   getAllSubjects(): Observable<Subject[]> {
     return this.http.get<Subject[]>(
-      'https://blogossauro.herokuapp.com/subject/all',
+      `${environment.apiURL}/api/subject/all`,
       this.token
     );
   }
 
   getSubjectById(id: number): Observable<Subject> {
     return this.http.get<Subject>(
-      `https://blogossauro.herokuapp.com/subject/${id}`,
+      `${environment.apiURL}/api/subject/${id}`,
       this.token
     );
   }
 
   postSubject(subject: Subject): Observable<Subject> {
     return this.http.post<Subject>(
-      'https://blogossauro.herokuapp.com/subject',
+      `${environment.apiURL}/api/subject`,
       subject,
       this.token
     );
@@ -40,7 +40,7 @@ export class SubjectService {
 
   putSubject(subject: Subject): Observable<Subject> {
     return this.http.put<Subject>(
-      'https://blogossauro.herokuapp.com/subject',
+      `${environment.apiURL}/api/subject`,
       subject,
       this.token
     );
@@ -48,7 +48,7 @@ export class SubjectService {
 
   deleteSubject(id: number) {
     return this.http.delete(
-      `https://blogossauro.herokuapp.com/subject/${id}`,
+      `${environment.apiURL}/api/subject/${id}`,
       this.token
     );
   }

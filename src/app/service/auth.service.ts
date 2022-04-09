@@ -7,24 +7,26 @@ import { UserCredentials } from '../model/UserCredentials';
 import { UserLogin } from '../model/UserLogin';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   login(userLogin: UserLogin): Observable<UserCredentials> {
-    return this.http.post<UserCredentials>('https://blogossauro.herokuapp.com/api/user/login', userLogin);
-
+    return this.http.post<UserCredentials>(
+      `${environment.apiURL}/api/user/login`,
+      userLogin
+    );
   }
 
   register(user: User): Observable<User> {
-    return this.http.post<User>('https://blogossauro.herokuapp.com/api/user/register', user);
+    return this.http.post<User>(
+      `${environment.apiURL}/api/user/register`,
+      user
+    );
   }
 
-  logged(){
+  logged() {
     let ok = false;
 
     if (environment.token != '') {
@@ -36,10 +38,9 @@ export class AuthService {
   isAdmin() {
     let adm = false;
 
-    if(environment.role == 'adm') {
+    if (environment.role == 'adm') {
       adm = true;
     }
     return adm;
   }
-
 }

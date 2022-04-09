@@ -18,21 +18,21 @@ export class PostsService {
 
   getAllPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(
-      'https://blogossauro.herokuapp.com/posts/all',
+      `${environment.apiURL}/api/posts/all`,
       this.token
     );
   }
 
   getPostById(id: number): Observable<Post> {
     return this.http.get<Post>(
-      `https://blogossauro.herokuapp.com/posts/${id}`,
+      `${environment.apiURL}/api/posts/${id}`,
       this.token
     );
   }
 
   savePost(post: Post): Observable<Post> {
     return this.http.post<Post>(
-      'https://blogossauro.herokuapp.com/posts',
+      `${environment.apiURL}/api/posts`,
       post,
       this.token
     );
@@ -40,7 +40,7 @@ export class PostsService {
 
   putPost(post: Post): Observable<Post> {
     return this.http.put<Post>(
-      'https://blogossauro.herokuapp.com/posts',
+      `${environment.apiURL}/api/posts`,
       post,
       this.token
     );
@@ -48,7 +48,7 @@ export class PostsService {
 
   deletePost(id: number) {
     return this.http.delete(
-      `https://blogossauro.herokuapp.com/posts/${id}`,
+      `${environment.apiURL}/api/posts/${id}`,
       this.token
     );
   }
