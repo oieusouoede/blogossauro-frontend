@@ -4,7 +4,7 @@
       <a [routerLink]="['/user', userId]">
         <div class="avatar d-flex justify-content-center">
           <img
-            src="{{ picture }}"
+            src="{{ user.picture }}"
             alt="avatar"
             width="200px"
             height="200px"
@@ -13,14 +13,13 @@
         </div>
       </a>
       <h5 class="mt-3">
-        Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros
-        commodo tempor.
+        {{ user.biography }}
       </h5>
     </div>
     <div class="col-md-9">
       <div class="row text-white">
         <div class="col-md-12">
-          <h1>Bem vindo(a), {{ name }}!</h1>
+          <h1>Bem vindo(a), {{ user.name }}!</h1>
         </div>
       </div>
       <app-posts></app-posts>

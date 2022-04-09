@@ -36,6 +36,9 @@ export class RegisterComponent implements OnInit {
       if (this.user.picture == null) {
         this.user.picture = '../../assets/dino.jpg';
       }
+      if (this.user.biography == null) {
+        this.user.biography = 'Não tem bio ainda';
+      }
       this.authService.register(this.user).subscribe((resp: User) => {
         this.user = new User();
         this.router.navigate(['/login']);

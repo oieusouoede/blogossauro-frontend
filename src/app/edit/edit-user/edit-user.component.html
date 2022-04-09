@@ -70,7 +70,7 @@
         <div class="form-group">
           <label for="passwd">Senha</label>
           <input
-            (input)="passwdCheck($event)"
+            (input)="passwd($event)"
             type="password"
             class="form-control bw-2 font-w-500 ft-wh b-wh"
             id="passwd"
@@ -80,9 +80,9 @@
           />
         </div>
         <div class="form-group">
-          <label for="passwd">Confirmar Senha</label>
+          <label for="passwdCheck">Confirmar Senha</label>
           <input
-            [(ngModel)]="editedUser.passwd"
+            (input)="passwdConfirm($event)"
             type="password"
             class="form-control bw-2 font-w-500 ft-wh b-wh"
             id="passwdCheck"

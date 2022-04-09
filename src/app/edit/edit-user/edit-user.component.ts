@@ -11,6 +11,7 @@ import { UserService } from 'src/app/service/user.service';
 export class EditUserComponent implements OnInit {
   user: any;
   editedUser: User = new User();
+  modifiedPasswd: string;
   passwdToCheck: string;
 
   constructor(private userService: UserService, public modalRef: BsModalRef) {}
@@ -20,7 +21,7 @@ export class EditUserComponent implements OnInit {
   }
 
   saveUser() {
-    if (this.editedUser.passwd != this.passwdToCheck) {
+    if (this.checkPasswd() == false) {
       alert('As senhas são diferentes');
     } else {
       if (this.editedUser.picture == null) {
@@ -34,7 +35,22 @@ export class EditUserComponent implements OnInit {
     }
   }
 
-  passwdCheck(event: any) {
+  checkPasswd() {
+    let ok = true;
+    if (this.modifiedPasswd != null && this.passwdToCheck != null) {
+      this.editedUser.passwd = this.modifiedPasswd;
+      if (this.modifiedPasswd != this.passwdToCheck) {
+        ok = false;
+      }
+    }
+    return ok;
+  }
+
+  passwd(event: any) {
+    this.modifiedPasswd = event.target.value;
+  }
+
+  passwdConfirm(event: any) {
     this.passwdToCheck = event.target.value;
   }
 }
