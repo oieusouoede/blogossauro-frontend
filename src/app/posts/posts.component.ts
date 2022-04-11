@@ -39,11 +39,14 @@ export class PostsComponent implements OnInit {
   }
 
   subjectById() {
-    this.subjectService
-      .getSubjectById(this.subjectId)
-      .subscribe((resp: Subject) => {
+    this.subjectService.getSubjectById(this.subjectId).subscribe({
+      next: (resp: Subject) => {
         this.subject = resp;
-      });
+      },
+      error: (err) => {
+        alert('Erro !!! ' + err.error.message);
+      },
+    });
   }
 
   createPost() {
@@ -52,11 +55,16 @@ export class PostsComponent implements OnInit {
     this.post.subject = this.subject;
     this.post.author = this.user;
 
-    this.postsService.savePost(this.post).subscribe((resp: Post) => {
-      this.post = resp;
-      alert('Publicado!');
-      this.post = new Post();
-      this.postsService.listPosts();
+    this.postsService.savePost(this.post).subscribe({
+      next: (resp: Post) => {
+        this.post = resp;
+        alert('Publicado!');
+        this.post = new Post();
+        this.postsService.listPosts();
+      },
+      error: (err) => {
+        alert('Erro!!! ' + err.error.message);
+      },
     });
   }
 

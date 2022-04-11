@@ -54,8 +54,13 @@ export class PostsService {
   }
 
   listPosts() {
-    this.getAllPosts().subscribe((resp: Post[]) => {
-      this.postsList = resp;
+    this.getAllPosts().subscribe({
+      next: (resp: Post[]) => {
+        this.postsList = resp;
+      },
+      error: (err) => {
+        alert('Erro !!! ' + err.error.message);
+      },
     });
   }
 }

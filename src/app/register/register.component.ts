@@ -39,10 +39,15 @@ export class RegisterComponent implements OnInit {
       if (this.user.biography == null) {
         this.user.biography = 'Não tem bio ainda';
       }
-      this.authService.register(this.user).subscribe((resp: User) => {
-        this.user = new User();
-        this.router.navigate(['/login']);
-        alert('Usuário cadastrado!');
+      this.authService.register(this.user).subscribe({
+        next: (resp: User) => {
+          this.user = new User();
+          this.router.navigate(['/login']);
+          alert('Usuário cadastrado!');
+        },
+        error: (err) => {
+          alert('Erro !!! ' + err.error.message);
+        },
       });
     }
   }

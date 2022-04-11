@@ -31,11 +31,16 @@ export class EditPostComponent implements OnInit {
     this.subject.id = this.subjectId;
     this.editedPost.subject = this.subject;
 
-    this.service.putPost(this.editedPost).subscribe((resp: Post) => {
-      this.editedPost = resp;
-      this.modalRef.hide();
-      alert('Post atualizado!');
-      this.service.listPosts();
+    this.service.putPost(this.editedPost).subscribe({
+      next: (resp: Post) => {
+        this.editedPost = resp;
+        this.modalRef.hide();
+        alert('Post atualizado!');
+        this.service.listPosts();
+      },
+      error: (err) => {
+        alert('Erro !!! ' + err.error.message);
+      },
     });
   }
 
@@ -45,10 +50,13 @@ export class EditPostComponent implements OnInit {
   }
 
   subjectById() {
-    this.subjectService
-      .getSubjectById(this.subjectId)
-      .subscribe((resp: Subject) => {
+    this.subjectService.getSubjectById(this.subjectId).subscribe({
+      next: (resp: Subject) => {
         this.subject = resp;
-      });
+      },
+      error: (err) => {
+        alert('Erro !!! ' + err.error.message);
+      },
+    });
   }
 }

@@ -42,8 +42,13 @@ export class UserComponent implements OnInit {
   }
 
   findUserById(id: number) {
-    this.userService.getUserById(id).subscribe((resp: User) => {
-      this.user = resp;
+    this.userService.getUserById(id).subscribe({
+      next: (resp: User) => {
+        this.user = resp;
+      },
+      error: (err) => {
+        alert('Erro !!! ' + err.error.message);
+      },
     });
   }
 

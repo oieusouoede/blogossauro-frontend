@@ -54,8 +54,13 @@ export class SubjectService {
   }
 
   listSubjects() {
-    this.getAllSubjects().subscribe((resp: Subject[]) => {
-      this.subjectList = resp;
+    this.getAllSubjects().subscribe({
+      next: (resp: Subject[]) => {
+        this.subjectList = resp;
+      },
+      error: (err) => {
+        alert('Erro !!! ' + err.error.message);
+      },
     });
   }
 }
