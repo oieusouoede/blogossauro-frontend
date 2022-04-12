@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../model/User';
+import { AlertService } from '../service/alert.service';
 import { AuthService } from '../service/auth.service';
 
 @Component({
@@ -13,7 +14,11 @@ export class RegisterComponent implements OnInit {
   passwdToCheck: string;
   role: string;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private alert: AlertService
+  ) {}
 
   ngOnInit() {
     window.scroll(0, 0);
@@ -31,7 +36,7 @@ export class RegisterComponent implements OnInit {
     this.user.user_role = 'normal';
 
     if (this.user.passwd != this.passwdToCheck) {
-      alert('As senhas são diferentes');
+      this.alert.danger('As senhas são diferentes');
     } else {
       if (this.user.picture == null) {
         this.user.picture = '../../assets/dino.jpg';
@@ -43,10 +48,10 @@ export class RegisterComponent implements OnInit {
         next: (resp: User) => {
           this.user = new User();
           this.router.navigate(['/login']);
-          alert('Usuário cadastrado!');
+          this.alert.success('Usuário cadastrado!');
         },
         error: (err) => {
-          alert('Erro !!! ' + err.error.message);
+          this.alert.danger(err.error.message);
         },
       });
     }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Post } from 'src/app/model/Post';
 import { Subject } from 'src/app/model/Subject';
+import { AlertService } from 'src/app/service/alert.service';
 import { PostsService } from 'src/app/service/posts.service';
 import { SubjectService } from 'src/app/service/subject.service';
 
@@ -19,7 +20,8 @@ export class EditPostComponent implements OnInit {
   constructor(
     private service: PostsService,
     public subjectService: SubjectService,
-    public modalRef: BsModalRef
+    public modalRef: BsModalRef,
+    private alert: AlertService
   ) {}
 
   ngOnInit() {
@@ -35,11 +37,11 @@ export class EditPostComponent implements OnInit {
       next: (resp: Post) => {
         this.editedPost = resp;
         this.modalRef.hide();
-        alert('Post atualizado!');
+        this.alert.success('Post atualizado!');
         this.service.listPosts();
       },
       error: (err) => {
-        alert('Erro !!! ' + err.error.message);
+        this.alert.danger(err.error.message);
       },
     });
   }
@@ -55,7 +57,7 @@ export class EditPostComponent implements OnInit {
         this.subject = resp;
       },
       error: (err) => {
-        alert('Erro !!! ' + err.error.message);
+        this.alert.danger(err.error.message);
       },
     });
   }

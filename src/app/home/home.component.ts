@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { User } from '../model/User';
+import { AlertService } from '../service/alert.service';
 import { AuthService } from '../service/auth.service';
 import { UserService } from '../service/user.service';
 
@@ -20,15 +21,21 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     public auth: AuthService,
-    public userService: UserService
+    public userService: UserService,
+    private alert: AlertService
   ) {}
 
   ngOnInit() {
     window.scroll(0, 0);
 
+    console.log(environment.name);
+    console.log(environment.email);
+    console.log(environment.token);
+    console.log(environment.username);
+
     if (environment.token == '') {
       this.router.navigate(['/login']);
-      alert('Usuário não autenticado');
+      this.alert.danger('Usuário não autenticado');
     }
     this.getUser();
   }
@@ -39,7 +46,7 @@ export class HomeComponent implements OnInit {
         this.user = resp;
       },
       error: (err) => {
-        alert('Erro !!! ' + err.error.message);
+        this.alert.danger(err.error.message);
       },
     });
   }

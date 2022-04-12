@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { AlertService } from 'src/app/service/alert.service';
 import { PostsService } from 'src/app/service/posts.service';
 
 @Component({
@@ -10,7 +11,11 @@ import { PostsService } from 'src/app/service/posts.service';
 export class DeletePostComponent implements OnInit {
   post: any;
 
-  constructor(private service: PostsService, public modalRef: BsModalRef) {}
+  constructor(
+    private service: PostsService,
+    public modalRef: BsModalRef,
+    private alert: AlertService
+  ) {}
 
   ngOnInit() {}
 
@@ -18,11 +23,11 @@ export class DeletePostComponent implements OnInit {
     this.service.deletePost(id).subscribe({
       next: () => {
         this.modalRef.hide();
-        alert('Post deletado!');
+        this.alert.info('Post deletado!');
         this.service.listPosts();
       },
       error: (err) => {
-        alert('Erro !!! ' + err.error.message);
+        this.alert.danger(err.error.message);
       },
     });
   }
