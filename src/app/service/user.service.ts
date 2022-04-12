@@ -14,6 +14,12 @@ export class UserService {
     headers: new HttpHeaders().set('Authorization', environment.token),
   };
 
+  refreshToken() {
+    this.token = {
+      headers: new HttpHeaders().set('Authorization', environment.token),
+    };
+  }
+
   putUser(user: User): Observable<User> {
     return this.http.put<User>(
       `${environment.apiURL}/api/user/update`,

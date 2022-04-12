@@ -16,6 +16,12 @@ export class PostsService {
     headers: new HttpHeaders().set('Authorization', environment.token),
   };
 
+  refreshToken() {
+    this.token = {
+      headers: new HttpHeaders().set('Authorization', environment.token),
+    };
+  }
+
   getAllPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(
       `${environment.apiURL}/api/posts/all`,

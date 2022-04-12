@@ -28,16 +28,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     window.scroll(0, 0);
 
-    console.log(environment.name);
-    console.log(environment.email);
-    console.log(environment.token);
-    console.log(environment.username);
-
     if (environment.token == '') {
       this.router.navigate(['/login']);
       this.alert.danger('Usuário não autenticado');
+    } else {
+      this.getUser();
     }
-    this.getUser();
   }
 
   getUser() {

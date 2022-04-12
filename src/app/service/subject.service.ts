@@ -16,6 +16,12 @@ export class SubjectService {
     headers: new HttpHeaders().set('Authorization', environment.token),
   };
 
+  refreshToken() {
+    this.token = {
+      headers: new HttpHeaders().set('Authorization', environment.token),
+    };
+  }
+
   getAllSubjects(): Observable<Subject[]> {
     return this.http.get<Subject[]>(
       `${environment.apiURL}/api/subject/all`,

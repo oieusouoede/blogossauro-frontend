@@ -6,6 +6,9 @@ import { UserCredentials } from '../model/UserCredentials';
 import { UserLogin } from '../model/UserLogin';
 import { AlertService } from '../service/alert.service';
 import { AuthService } from '../service/auth.service';
+import { PostsService } from '../service/posts.service';
+import { SubjectService } from '../service/subject.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +21,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private userService: UserService,
+    private subjectService: SubjectService,
+    private postService: PostsService,
     private router: Router,
     private alert: AlertService
   ) {}
@@ -38,6 +44,10 @@ export class LoginComponent implements OnInit {
         environment.email = this.userCredentials.email;
         environment.role = this.userCredentials.user_role;
         environment.username = this.userCredentials.username;
+
+        this.userService.refreshToken();
+        this.postService.refreshToken();
+        this.subjectService.refreshToken();
 
         this.router.navigate(['/home']);
       },
