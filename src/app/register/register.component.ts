@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(event: any) {
-    this.user.user_role = 'normal';
+    this.user.user_role = 'regular';
 
     if (this.user.passwd != this.passwdToCheck) {
       this.alert.danger('As senhas são diferentes');
