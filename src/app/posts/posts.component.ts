@@ -52,8 +52,10 @@ export class PostsComponent implements OnInit {
   createPost() {
     this.subject.id = this.subjectId;
     this.user.id = environment.id;
-    this.post.subject = this.subject;
     this.post.author = this.user;
+    if (this.subject.id != undefined) {
+      this.post.subject = this.subject;
+    }
 
     this.postsService.savePost(this.post).subscribe({
       next: (resp: Post) => {
