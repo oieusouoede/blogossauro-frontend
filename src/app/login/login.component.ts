@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment.prod';
 
 import { UserCredentials } from '../model/UserCredentials';
 import { UserLogin } from '../model/UserLogin';
+import { AlertService } from '../service/alert.service';
 import { AuthService } from '../service/auth.service';
 
 @Component({
@@ -15,7 +16,11 @@ export class LoginComponent implements OnInit {
   userLogin: UserLogin = new UserLogin();
   userCredentials: UserCredentials = new UserCredentials();
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private alert: AlertService
+  ) {}
 
   ngOnInit() {
     window.scroll(0, 0);
@@ -37,7 +42,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error: (err) => {
-        alert('Erro!!! ' + err.error.message);
+        this.alert.danger('Erro!!! ' + err.error.message);
       },
     });
   }

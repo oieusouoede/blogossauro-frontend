@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'src/app/model/Subject';
+import { AlertService } from 'src/app/service/alert.service';
 
 import { SubjectService } from 'src/app/service/subject.service';
 
@@ -15,7 +16,8 @@ export class EditSubjectComponent implements OnInit {
 
   constructor(
     private subjectService: SubjectService,
-    public modalRef: BsModalRef
+    public modalRef: BsModalRef,
+    private alert: AlertService
   ) {}
 
   ngOnInit() {
@@ -28,11 +30,11 @@ export class EditSubjectComponent implements OnInit {
       next: (resp: Subject) => {
         this.subject = resp;
         this.modalRef.hide();
-        alert('Tema atualizado!');
+        this.alert.success('Tema atualizado!');
         this.subjectService.listSubjects();
       },
       error: (err) => {
-        alert('Erro !!! ' + err.error.message);
+        this.alert.danger(err.error.message);
       },
     });
   }

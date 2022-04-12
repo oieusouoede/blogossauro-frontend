@@ -4,6 +4,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { User } from 'src/app/model/User';
 import { UserCredentials } from 'src/app/model/UserCredentials';
 import { UserLogin } from 'src/app/model/UserLogin';
+import { AlertService } from 'src/app/service/alert.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
 import { environment } from 'src/environments/environment.prod';
@@ -34,7 +35,8 @@ export class EditUserComponent implements OnInit {
     private authService: AuthService,
     public modalService: BsModalService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alert: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +50,7 @@ export class EditUserComponent implements OnInit {
         this.editedUser = resp;
       },
       error: (err) => {
-        alert('Erro !!! ' + err.error.message);
+        this.alert.danger('Erro !!! ' + err.error.message);
       },
     });
   }
@@ -63,7 +65,7 @@ export class EditUserComponent implements OnInit {
         this.editedUser.passwd = this.newPasswd;
         return true;
       } else {
-        alert('As senhas não são iguais');
+        this.alert.danger('As senhas não são iguais');
         return false;
       }
     }
@@ -112,14 +114,16 @@ export class EditUserComponent implements OnInit {
             environment.username = '';
 
             this.router.navigate(['/login']);
-            alert('Usuário atualizado! Por favor, faça o login novamente.');
+            this.alert.success(
+              'Usuário atualizado! Por favor, faça o login novamente.'
+            );
           });
         }
       },
       error: (err) => {
         this.currentPasswd = '';
         this.bsModalRef.hide();
-        alert('Erro !!! ' + err.error.message);
+        this.alert.danger(err.error.message);
       },
     });
   }

@@ -7,6 +7,7 @@ import { EditPostComponent } from '../edit/edit-post/edit-post.component';
 import { EditUserComponent } from '../edit/edit-user/edit-user.component';
 import { Post } from '../model/Post';
 import { User } from '../model/User';
+import { AlertService } from '../service/alert.service';
 import { AuthService } from '../service/auth.service';
 import { PostsService } from '../service/posts.service';
 import { SubjectService } from '../service/subject.service';
@@ -30,7 +31,8 @@ export class UserComponent implements OnInit {
     public auth: AuthService,
     private modalService: BsModalService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alert: AlertService
   ) {}
 
   ngOnInit() {
@@ -47,7 +49,7 @@ export class UserComponent implements OnInit {
         this.user = resp;
       },
       error: (err) => {
-        alert('Erro !!! ' + err.error.message);
+        this.alert.danger(err.error.message);
       },
     });
   }

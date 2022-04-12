@@ -6,6 +6,7 @@ import { EditPostComponent } from '../edit/edit-post/edit-post.component';
 import { Post } from '../model/Post';
 import { Subject } from '../model/Subject';
 import { User } from '../model/User';
+import { AlertService } from '../service/alert.service';
 import { AuthService } from '../service/auth.service';
 import { PostsService } from '../service/posts.service';
 import { SubjectService } from '../service/subject.service';
@@ -30,7 +31,8 @@ export class PostsComponent implements OnInit {
     public userService: UserService,
     private modalService: BsModalService,
     public modalRef: BsModalRef,
-    public auth: AuthService
+    public auth: AuthService,
+    private alert: AlertService
   ) {}
 
   ngOnInit() {
@@ -44,7 +46,7 @@ export class PostsComponent implements OnInit {
         this.subject = resp;
       },
       error: (err) => {
-        alert('Erro !!! ' + err.error.message);
+        this.alert.danger(err.error.message);
       },
     });
   }
@@ -60,12 +62,12 @@ export class PostsComponent implements OnInit {
     this.postsService.savePost(this.post).subscribe({
       next: (resp: Post) => {
         this.post = resp;
-        alert('Publicado!');
+        this.alert.success('Publicado!');
         this.post = new Post();
         this.postsService.listPosts();
       },
       error: (err) => {
-        alert('Erro!!! ' + err.error.message);
+        this.alert.danger(err.error.message);
       },
     });
   }

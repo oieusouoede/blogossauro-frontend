@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DeleteSubjectComponent } from '../delete/delete-subject/delete-subject.component';
 import { EditSubjectComponent } from '../edit/edit-subject/edit-subject.component';
 import { Subject } from '../model/Subject';
+import { AlertService } from '../service/alert.service';
 import { SubjectService } from '../service/subject.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class SubjectComponent implements OnInit {
   constructor(
     public subjectService: SubjectService,
     private modalService: BsModalService,
-    public modalRef: BsModalRef
+    public modalRef: BsModalRef,
+    private alert: AlertService
   ) {}
 
   ngOnInit() {
@@ -29,12 +31,12 @@ export class SubjectComponent implements OnInit {
     this.subjectService.postSubject(this.subject).subscribe({
       next: (resp: Subject) => {
         this.subject = resp;
-        alert('Novo tema cadastrado com sucesso!');
+        this.alert.success('Novo tema cadastrado com sucesso!');
         this.resetSubject();
         this.subjectService.listSubjects();
       },
       error: (err) => {
-        alert('Erro !!! ' + err.error.message);
+        this.alert.danger(err.error.message);
       },
     });
   }
@@ -43,13 +45,13 @@ export class SubjectComponent implements OnInit {
     this.subjectService.putSubject(this.subject).subscribe({
       next: (resp: Subject) => {
         this.subject = resp;
-        alert('Tema atualizado!');
+        this.alert.success('Tema atualizado!');
         this.modalR.hide();
         this.resetSubject();
         this.subjectService.listSubjects();
       },
       error: (err) => {
-        alert('Erro !!! ' + err.error.message);
+        this.alert.danger(err.error.message);
       },
     });
   }
