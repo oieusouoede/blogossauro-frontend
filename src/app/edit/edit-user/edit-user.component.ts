@@ -43,8 +43,13 @@ export class EditUserComponent implements OnInit {
   }
 
   findUserById(id: number) {
-    this.userService.getUserById(id).subscribe((resp: User) => {
-      this.editedUser = resp;
+    this.userService.getUserById(id).subscribe({
+      next: (resp: User) => {
+        this.editedUser = resp;
+      },
+      error: (err) => {
+        alert('Erro !!! ' + err.error.message);
+      },
     });
   }
 
@@ -114,9 +119,7 @@ export class EditUserComponent implements OnInit {
       error: (err) => {
         this.currentPasswd = '';
         this.bsModalRef.hide();
-        if (err.status == 400) {
-          alert('Senha incorreta');
-        }
+        alert('Erro !!! ' + err.error.message);
       },
     });
   }

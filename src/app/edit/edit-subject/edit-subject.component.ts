@@ -24,11 +24,16 @@ export class EditSubjectComponent implements OnInit {
 
   saveSubject() {
     this.subject.description = this.newDescription;
-    this.subjectService.putSubject(this.subject).subscribe((resp: Subject) => {
-      this.subject = resp;
-      this.modalRef.hide();
-      alert('Tema atualizado!');
-      this.subjectService.listSubjects();
+    this.subjectService.putSubject(this.subject).subscribe({
+      next: (resp: Subject) => {
+        this.subject = resp;
+        this.modalRef.hide();
+        alert('Tema atualizado!');
+        this.subjectService.listSubjects();
+      },
+      error: (err) => {
+        alert('Erro !!! ' + err.error.message);
+      },
     });
   }
 

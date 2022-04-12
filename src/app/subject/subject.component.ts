@@ -26,21 +26,31 @@ export class SubjectComponent implements OnInit {
   }
 
   newSubject() {
-    this.subjectService.postSubject(this.subject).subscribe((resp: Subject) => {
-      this.subject = resp;
-      alert('Novo tema cadastrado com sucesso!');
-      this.resetSubject();
-      this.subjectService.listSubjects();
+    this.subjectService.postSubject(this.subject).subscribe({
+      next: (resp: Subject) => {
+        this.subject = resp;
+        alert('Novo tema cadastrado com sucesso!');
+        this.resetSubject();
+        this.subjectService.listSubjects();
+      },
+      error: (err) => {
+        alert('Erro !!! ' + err.error.message);
+      },
     });
   }
 
   saveSubject() {
-    this.subjectService.putSubject(this.subject).subscribe((resp: Subject) => {
-      this.subject = resp;
-      alert('Tema atualizado!');
-      this.modalR.hide();
-      this.resetSubject();
-      this.subjectService.listSubjects();
+    this.subjectService.putSubject(this.subject).subscribe({
+      next: (resp: Subject) => {
+        this.subject = resp;
+        alert('Tema atualizado!');
+        this.modalR.hide();
+        this.resetSubject();
+        this.subjectService.listSubjects();
+      },
+      error: (err) => {
+        alert('Erro !!! ' + err.error.message);
+      },
     });
   }
 

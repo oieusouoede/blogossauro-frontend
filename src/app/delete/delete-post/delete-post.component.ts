@@ -15,10 +15,15 @@ export class DeletePostComponent implements OnInit {
   ngOnInit() {}
 
   deletePost(id: number) {
-    this.service.deletePost(id).subscribe(() => {
-      this.modalRef.hide();
-      alert('Post deletado!');
-      this.service.listPosts();
+    this.service.deletePost(id).subscribe({
+      next: () => {
+        this.modalRef.hide();
+        alert('Post deletado!');
+        this.service.listPosts();
+      },
+      error: (err) => {
+        alert('Erro !!! ' + err.error.message);
+      },
     });
   }
 }
